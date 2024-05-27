@@ -39,22 +39,24 @@ function callTasksList() {
       </td>
       <td>
           <div class="note-action">
-    
-              <button class="btn btn-icon btn-icon-primary">
+              <button class="btn btn-icon btn-icon-primary" onclick="editTask(${index})">
                   <span class="material-symbols-outlined">
                       edit_square
                   </span>
               </button>
+
               <button class="btn btn-icon btn-icon-danger" onclick="deleteTask(${index})">
                   <span class="material-symbols-outlined">
                       delete
                   </span>
               </button>
+
               <button class="btn btn-icon btn-icon-danger">
                   <span class="material-symbols-outlined">
                       disabled_by_default
                   </span>
               </button>
+
               <button class="btn btn-icon btn-icon-success">
                   <span class="material-symbols-outlined">
                       select_check_box
@@ -68,7 +70,9 @@ function callTasksList() {
     index++;
   }
 }
+
 callTasksList();
+// add task
 document.querySelector("#addNote").addEventListener("click", function () {
   let noteName = prompt();
   let date = new Date();
@@ -83,12 +87,23 @@ document.querySelector("#addNote").addEventListener("click", function () {
   tasks.push(addNewTask);
   callTasksList();
 });
+// delete task
 function deleteTask(index) {
   let confirmDelete = confirm(
     `are you sure to delete this note : ${tasks[index].name}`
   );
   if (confirmDelete) {
     tasks.splice(index, 1);
+    callTasksList();
+  }
+}
+// edit task
+function editTask(index) {
+  let editNote = prompt(
+    `are you sure you want to edit this task: ${tasks[index].name} `
+  );
+  if (editNote != null) {
+    tasks[index].name = editNote;
     callTasksList();
   }
 }
