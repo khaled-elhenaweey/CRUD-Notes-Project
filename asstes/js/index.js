@@ -74,7 +74,7 @@ document.querySelector("#addNote").addEventListener("click", function () {
   let date = new Date();
   let today = `${date.getDay()} / ${
     date.getMonth() + 1
-  } /${date.getFullYear()}   | ${date.getHours()} : ${date.getSeconds()}`;
+  } /${date.getFullYear()}   | ${date.getHours()} : ${date.getMinutes()}`;
   let addNewTask = {
     name: noteName,
     date: today,
