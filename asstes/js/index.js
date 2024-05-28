@@ -20,6 +20,7 @@ let tasks = [
     state: true,
   },
 ];
+getLocal();
 function callTasksList() {
   document.querySelector(".table-body").innerHTML = "";
   let index = 0;
@@ -74,6 +75,7 @@ function callTasksList() {
     index++;
   }
 }
+
 callTasksList();
 // add task
 document.querySelector("#addNote").addEventListener("click", function () {
@@ -88,6 +90,7 @@ document.querySelector("#addNote").addEventListener("click", function () {
     state: false,
   };
   tasks.push(addNewTask);
+  setInLocal();
   callTasksList();
 });
 // delete task
@@ -97,6 +100,7 @@ function deleteTask(index) {
   );
   if (confirmDelete) {
     tasks.splice(index, 1);
+    setInLocal();
     callTasksList();
   }
 }
@@ -107,11 +111,25 @@ function editTask(index) {
   );
   if (editNote != null) {
     tasks[index].name = editNote;
+    setInLocal();
     callTasksList();
   }
 }
 // check task
 function checkTask(index) {
   tasks[index].state = !tasks[index].state;
+  setInLocal();
   callTasksList();
+}
+function setInLocal() {
+  let myTasks = JSON.stringify(tasks);
+  localStorage.setItem("myTasks", myTasks);
+}
+function getLocal() {
+  let retrievedTask = JSON.parse(localStorage.getItem("myTasks"));
+  if (retrievedTask == null) {
+    tasks = [];
+  } else {
+    tasks = retrievedTask;
+  }
 }
