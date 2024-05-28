@@ -54,6 +54,9 @@ body {
 .block-container .block-table .table-body tr.done {
   background-color: rgba(40, 167, 69, 0.1);
 }
+.block-container .block-table .table-body tr.no-notes {
+  text-align: center;
+}
 .block-container .block-table .table-body tr td {
   padding: 12px;
   color: #000;
