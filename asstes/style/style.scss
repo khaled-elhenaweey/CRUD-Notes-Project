@@ -5,10 +5,18 @@ $white: #fff;
 $black: #000;
 
 body {
-    background-color: #f9f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    background-color: #e5e5f747;
+    background-size: 8px 8px;
+    background-image: repeating-linear-gradient(45deg, #28aae21f 0, #28aae21f 0.8px, #e5e5f747 0, #e5e5f747 50%);
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
 .main-card {
@@ -18,6 +26,7 @@ body {
     margin-top: 16px;
     padding: 16px;
     width: 50%;
+    z-index: 10;
 }
 
 .block-container {
@@ -28,6 +37,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+
+    .header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        h4 {
+            margin: 0;
+        }
+    }
 
     .block-table {
         width: 100%;
@@ -45,21 +65,27 @@ body {
                     background-color: #fbfbfb;
                 }
 
+                &.done {
+
+                    background-color: rgba($color: $success, $alpha: 0.1);
+                }
+
+
                 td {
                     padding: 12px;
                     color: $black;
                     font-size: 14px;
                     font-weight: 600;
-                    border-block: 2px solid #e0e0e0;
+                    border-block: 2px dashed #e0e0e0;
 
                     &:first-of-type {
-                        border-left: 2px solid #e0e0e0;
+                        border-left: 2px dashed #e0e0e0;
                         border-top-left-radius: 12px;
                         border-bottom-left-radius: 12px;
                     }
 
                     &:last-of-type {
-                        border-right: 2px solid #e0e0e0;
+                        border-right: 2px dashed #e0e0e0;
                         border-top-right-radius: 12px;
                         border-bottom-right-radius: 12px;
                     }
@@ -230,7 +256,15 @@ body {
     }
 }
 
-// scroll bar style
+.none {
+    display: none;
+}
+
+.flex {
+    display: inline-flex;
+}
+
+/* scroll bar style*/
 
 /* width */
 

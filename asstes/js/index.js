@@ -1,23 +1,23 @@
 let tasks = [
   {
-    name: "note",
+    name: "first note ",
     date: "27/5/2024",
     state: false,
   },
   {
-    name: "note1",
+    name: "second note",
     date: "28/5/2024",
-    state: false,
+    state: true,
   },
   {
-    name: "note2",
+    name: "third note",
     date: "29/5/2024",
     state: false,
   },
   {
-    name: "note3",
+    name: "final note",
     date: "30/5/2024",
-    state: false,
+    state: true,
   },
 ];
 function callTasksList() {
@@ -25,7 +25,7 @@ function callTasksList() {
   let index = 0;
   for (const task of tasks) {
     let content = `
-      <tr>
+      <tr class="${task.state ? "done" : ""}">
       <td>
           <div class="note-data">
               <h4>${task.name}</h4>
@@ -51,13 +51,17 @@ function callTasksList() {
                   </span>
               </button>
 
-              <button class="btn btn-icon btn-icon-danger">
+              <button class="btn btn-icon btn-icon-danger ${
+                task.state ? "flex" : "none"
+              }" onclick="checkTask(${index})">
                   <span class="material-symbols-outlined">
                       disabled_by_default
                   </span>
               </button>
 
-              <button class="btn btn-icon btn-icon-success">
+              <button class="btn btn-icon btn-icon-success ${
+                task.state ? "none" : "flex"
+              }"   onclick="checkTask(${index})">
                   <span class="material-symbols-outlined">
                       select_check_box
                   </span>
@@ -70,7 +74,6 @@ function callTasksList() {
     index++;
   }
 }
-
 callTasksList();
 // add task
 document.querySelector("#addNote").addEventListener("click", function () {
@@ -106,4 +109,9 @@ function editTask(index) {
     tasks[index].name = editNote;
     callTasksList();
   }
+}
+// check task
+function checkTask(index) {
+  tasks[index].state = !tasks[index].state;
+  callTasksList();
 }
