@@ -71,6 +71,7 @@ callTasksList();
 // add task
 document.querySelector("#addNote").addEventListener("click", function () {
   let noteName = prompt();
+  console.log(noteName);
   let date = new Date();
   let today = `${date.getDay()} / ${
     date.getMonth() + 1
@@ -80,9 +81,11 @@ document.querySelector("#addNote").addEventListener("click", function () {
     date: today,
     state: false,
   };
-  tasks.push(addNewTask);
-  setInLocal();
-  callTasksList();
+  if (noteName != null) {
+    tasks.push(addNewTask);
+    setInLocal();
+    callTasksList();
+  }
 });
 // delete task
 function deleteTask(index) {
